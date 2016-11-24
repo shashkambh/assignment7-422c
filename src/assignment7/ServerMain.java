@@ -1,3 +1,5 @@
+package assignment7;
+
 import java.net.*;
 import java.util.*;
 
@@ -27,6 +29,7 @@ public class ServerMain{
 		String[] message = msg.split(" ", 2);
 
 		if(message[0].equals("server")){
+			sender.send("server " + sender.getName() + ": " + message[1]);
 			String[] command = message[1].split(" ");
 			if(command.length >= 2 && command[0].equals("createChat")){
 				boolean found = false;
@@ -73,6 +76,7 @@ public class ServerMain{
 						if(e.getName().equals(command[1])){
 							e.addObserver(req);
 							req.send(e.getName());
+							e.send(req.getName() + " has been added to the chat.");
 						}
 					}
 				}
@@ -81,7 +85,7 @@ public class ServerMain{
 		
 		for(Conversation e : conversations){
 			if(e.getName().equals(message[0])){
-				e.send(e.getName() + " " + sender.getName() + " " + message[1]);
+				e.send(sender.getName() + ": " + message[1]);
 				break;
 			}
 		}

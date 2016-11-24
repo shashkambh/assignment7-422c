@@ -1,3 +1,5 @@
+package assignment7;
+
 import java.util.Observable;
 
 public class Conversation extends Observable{
@@ -9,7 +11,7 @@ public class Conversation extends Observable{
 
 	public void send(String msg){
 		setChanged();
-		notifyObservers(msg);
+		notifyObservers(name + " " + msg);
 	}
 
 	public String getName(){

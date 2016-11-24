@@ -1,3 +1,5 @@
+package assignment7;
+
 import java.net.*;
 import java.io.*;
 import javafx.application.Platform;
@@ -24,6 +26,11 @@ public class ClientConnect{
 	}
 	
 	public void sendToServer(String message){
+		out.println("server " + message);
+		out.flush();
+	}
+
+	public void send(String message){
 		out.println(view.getCurrentChat() + " " + message);
 		out.flush();
 	}
