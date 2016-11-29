@@ -9,15 +9,18 @@ public class ClientConnect{
 	private PrintWriter out;
 	private boolean running;
 	private ClientMain view;
+	private Socket sock;
+	private String name;
 
-	public ClientConnect(ClientMain gui){
+	public ClientConnect(ClientMain gui, String ip){
 		view = gui;
 		
 		try{
-			Socket sock = new Socket("127.0.0.1", 4242);
+			sock = new Socket(ip, 4242);
 			in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			out = new PrintWriter(sock.getOutputStream());
 			running = true;
+			name = in.readLine();
 			new Thread(()->listen()).start();
 		} catch(Exception e){
 			System.out.println("ERROR");
@@ -31,8 +34,10 @@ public class ClientConnect{
 	}
 
 	public void send(String message){
-		out.println(view.getCurrentChat() + " " + message);
-		out.flush();
+		if(!message.trim().equals("")){
+			out.println(view.getCurrentChat() + " " + message);
+			out.flush();
+		}
 	}
 
 	private void listen(){
@@ -62,5 +67,14 @@ public class ClientConnect{
 		running = false;
 		out.println("exit");
 		out.flush();
+		try{
+			sock.close();
+		} catch(IOException e){
+			
+		}
+	}
+
+	public String getName(){
+		return name;
 	}
 }

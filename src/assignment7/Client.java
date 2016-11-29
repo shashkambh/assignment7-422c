@@ -18,6 +18,8 @@ public class Client implements Observer{
 			out = new PrintWriter(conn.getOutputStream());
 			in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			name = "guest" + id;
+			out.println(name);
+			out.flush();
 			new Thread(()->listen()).start();
 		} catch(Exception e){
 			e.printStackTrace();
