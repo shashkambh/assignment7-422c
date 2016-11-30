@@ -20,7 +20,6 @@ public class ServerMain{
 		
 		try{
 			ServerSocket serverSock = new ServerSocket(4242);
-			System.out.println("Listening");
 			while(true){
 				Client newUser = new Client(serverSock.accept());
 				users.add(newUser);
@@ -31,8 +30,6 @@ public class ServerMain{
 	}
 
 	public static void message(Client sender, String msg){
-		System.out.println(msg);
-		
 		String[] message = msg.split(" ", 2);
 
 		if(message[0].equals("server")){

@@ -46,7 +46,6 @@ public class Client implements Observer{
 				input = in.readLine();
 			}
 		} catch(IOException ex){
-			System.out.println("Connection lost.");
 		}
 	}
 

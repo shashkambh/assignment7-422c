@@ -30,8 +30,7 @@ public class ClientConnect{
 			name = in.readLine();
 			new Thread(()->listen()).start();
 		} catch(Exception e){
-			System.out.println("ERROR");
-			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 	
@@ -48,13 +47,10 @@ public class ClientConnect{
 	}
 
 	private void listen(){
-		System.out.println("Listening");
 		try{
 			String input = in.readLine();
 
 			while(running){
-				System.out.println(input);
-
 				if(!input.contains(" ")){
 					final String convo = input;
 					Platform.runLater(() -> view.addConversation(convo));
@@ -76,7 +72,6 @@ public class ClientConnect{
 				input = in.readLine();
 			}
 		} catch(IOException ex){
-			System.out.println("Connection lost.");
 		}
 	}
 

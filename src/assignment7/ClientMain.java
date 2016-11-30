@@ -63,7 +63,7 @@ public class ClientMain extends Application{
         primaryStage.show();
     }
 
-    public Scene createScene(){
+    private Scene createScene(){
         VBox outer = new VBox();
 		outer.setStyle("-fx-font-family: 'Roboto', 'Arial', sans-serif; -fx-font-size: 10pt;");
         MenuBar toolbar = new MenuBar();
