@@ -1,3 +1,10 @@
+/* Chat Client - Project 7
+ * Shashank Kambhampati
+ * skk834
+ * 16445
+ * Slip days used: 0
+ * Fall 2016
+ */
 package assignment7;
 
 import java.util.Observable;

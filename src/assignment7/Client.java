@@ -1,3 +1,10 @@
+/* Chat Client - Project 7
+ * Shashank Kambhampati
+ * skk834
+ * 16445
+ * Slip days used: 0
+ * Fall 2016
+ */
 package assignment7;
 
 import java.util.*;
@@ -10,7 +17,6 @@ public class Client implements Observer{
 	private PrintWriter out;
 	private BufferedReader in;
 	private String name;
-	private String password;
 	
 	public Client(Socket conn){
 		id++;
@@ -44,9 +50,10 @@ public class Client implements Observer{
 		}
 	}
 
-	public void createLogin(String username, String passwd){
+	public void createLogin(String username){
 		name = username;
-		password = passwd;
+		out.println("server login " + username);
+		out.flush();
 	}
 
 	public String getName(){

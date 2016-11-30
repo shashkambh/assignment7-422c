@@ -1,3 +1,10 @@
+/* Chat Client - Project 7
+ * Shashank Kambhampati
+ * skk834
+ * 16445
+ * Slip days used: 0
+ * Fall 2016
+ */
 package assignment7;
 
 import java.net.*;
@@ -48,7 +55,7 @@ public class ServerMain{
 					sender.send(command[1]);
 				}
 
-			} else if(command.length >= 3 && command[0].equals("createLogin")){
+			} else if(command.length >= 2 && command[0].equals("createLogin")){
 				boolean found = false;
 
 				for(Client e : users){
@@ -59,7 +66,7 @@ public class ServerMain{
 				}
 
 				if(!found){
-					sender.createLogin(command[1], command[2]);
+					sender.createLogin(command[1]);
 				}
 
 			} else if(command.length >= 3 && command[0].equals("addToChat")){
@@ -80,6 +87,8 @@ public class ServerMain{
 						}
 					}
 				}
+			} else if(command[0].equalsIgnoreCase("whoami")){
+				sender.send("server Current username is " + sender.getName());
 			}
 		}
 		

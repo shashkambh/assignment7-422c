@@ -1,3 +1,10 @@
+/* Chat Client - Project 7
+ * Shashank Kambhampati
+ * skk834
+ * 16445
+ * Slip days used: 0
+ * Fall 2016
+ */
 package assignment7;
 
 import java.net.*;
@@ -52,8 +59,18 @@ public class ClientConnect{
 					final String convo = input;
 					Platform.runLater(() -> view.addConversation(convo));
 				} else {
-					String[] fromServer = input.split(" ", 2);
-					Platform.runLater(() -> view.appendToConversation(fromServer[0], fromServer[1]));
+					String[] fromServer = input.split(" ", 3);
+					final String msg;
+					if(fromServer[1].equals(name + ":")){
+						msg = "me: " + fromServer[2];
+					} else if(fromServer[0].equals("server") && fromServer[1].equals("login")){
+						name = fromServer[2];
+						msg = "Name successfully changed to " + name;
+					} else {
+						msg = fromServer[1] + " " + fromServer[2];
+					}
+					
+					Platform.runLater(() -> view.appendToConversation(fromServer[0], msg));
 				}
 				
 				input = in.readLine();
